@@ -12,28 +12,28 @@ nha movers new \
  --path "models/sentiments.joblib"
 
 nha proj new \
- --name sentiments \
+ --name sentiments-$USER \
  --desc "Experiments with sentiment prediction" \
  --model sentiment-clf
 
-nha -d -p proj build --name sentiments \
+nha -d -p proj build --name sentiments-$USER \
  && docker images | grep sentiments
 
 nha -d -p note \
- --proj sentiments \
+ --proj sentiments-$USER \
  --port 30090 \
  --movers sentiment-clf:experiment-v1 \
  --edit
 
 nha -d -p train new \
- --proj sentiments \
+ --proj sentiments-$USER \
  --name experiment-v2 \
  --nb notebooks/train \
  --params '{"alpha": 0.002}' \
  --dataset sentiment-clf:tweets-ptbr-v1
 
 nha -d -p depl new \
---proj sentiments \
+--proj sentiments-$USER \
 --name prediction \
 --nb notebooks/predict \
 --port 30050 \
