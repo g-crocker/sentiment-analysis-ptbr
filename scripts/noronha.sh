@@ -40,3 +40,8 @@ nha -d -p depl new \
 --movers sentiment-clf:experiment-v2 \
 --resource-profile light-request
 
+curl -X POST \
+--data '{"message": "A segurança desse país está deixando a desejar."}' \
+http://127.0.0.1:30050/predict \
+&& echo
+
