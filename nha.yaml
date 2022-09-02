@@ -1,0 +1,22 @@
+---
+logger:
+    level: DEBUG
+
+container_manager:
+  type: swarm
+  resource_profiles:
+    nha-ide:
+      requests:
+        memory: 512
+        cpu: 1
+      limits:
+        memory: 4096
+        cpu: 2
+    light-request:
+      requests:
+        memory: 1024
+        cpu: 1
+      limits:
+        memory: 1024
+        cpu: 1
+

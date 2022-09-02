@@ -1,0 +1,33 @@
+---
+logger:
+    level: DEBUG
+
+container_manager:
+  type: kube
+  namespace: noronha
+  api_timeout: 120
+  healthcheck:
+    enabled: true
+    start_period: 120
+    interval: 60
+    retries: 12
+  storage_class: standard  # edit the storage class for provisioning disk on demand (Azure: default | Others: standard)
+  nfs:
+    server: noronha-nfs.noronha.svc.cluster.local  # edit the nfs server ip address (same as in nfs.yaml)
+    path: /nfs/nha-vols
+  resource_profiles:
+    nha-ide:
+      requests:
+        memory: 512
+        cpu: 1
+      limits:
+        memory: 4096
+        cpu: 2
+    light-request:
+      requests:
+        memory: 1024
+        cpu: 1
+      limits:
+        memory: 1024
+        cpu: 1
+
